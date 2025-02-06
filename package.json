@@ -3,9 +3,9 @@
 	"type": "module",
 	"version": "0.0.1",
 	"scripts": {
-		"dev": "astro dev --mode dev",
-		"start": "astro dev --mode local",
-		"build": "astro check && astro build --mode prod",
+		"dev": "astro dev",
+		"start": "astro dev",
+		"build": "astro check && astro build",
 		"preview": "astro preview",
 		"astro": "astro"
 	},
