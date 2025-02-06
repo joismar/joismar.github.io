@@ -3,7 +3,7 @@ import tailwind from '@astrojs/tailwind';
 import { remarkReadingTime } from './src/plugins/readingTime';
 import { mermaid } from './src/plugins/mermaid';
 import rehypePrettyCode from 'rehype-pretty-code';
-import vercelStatic from '@astrojs/vercel/static';
+// import vercelStatic from '@astrojs/vercel/static';
 import react from '@astrojs/react';
 import sitemap from "@astrojs/sitemap";
 
@@ -46,9 +46,9 @@ export default defineConfig({
     config: { applyAstroPreset: false, applyBaseStyles: true },
   }), react(), sitemap()],
 	output: 'static',
-	adapter: vercelStatic({
-		webAnalytics: {
-			enabled: true
-		}
-	})
+	// adapter: vercelStatic({
+	// 	webAnalytics: {
+	// 		enabled: true
+	// 	}
+	// })
 });
