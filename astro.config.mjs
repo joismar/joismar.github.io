@@ -35,7 +35,6 @@ const options = {
 // https://astro.build/config
 export default defineConfig({
 	site: isProd ? 'https://joismar.github.io' : 'https://supreme-carnival-qvv4xrxvjvj2956v-4321.app.github.dev/',
-  base: isProd ? '/joismar.github.io' : '/',
 	markdown: {
 		syntaxHighlight: false,
 		// Disable syntax built-in syntax hightlighting from astro
