@@ -1,0 +1,43 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+.md-content {
+  @apply prose mt-8 max-w-none text-base leading-6 text-black dark:prose-invert prose-code:rounded-lg prose-code:bg-stone-800 prose-code:p-1 prose-code:text-orange-600 prose-img:rounded-lg prose-img:shadow-xl dark:text-white prose-img:dark:shadow-stone-800;
+}
+
+/* text gradient from primary to secondary */
+.md-content strong {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary;
+}
+
+.md-content img {
+  @apply inline my-0;
+}
+
+.md-content li {
+  @apply my-0;
+}
+
+.md-content code[data-language="tree"] {
+  @apply text-sm;
+  line-height: normal;
+}
+
+/* create style for scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #ffffff00;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #8888888c;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #888888ba;
+}

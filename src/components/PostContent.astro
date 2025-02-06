@@ -1,46 +1,46 @@
 ---
-import Section from './Section.astro';
+import Section from './Section';
 ---
 
 <Section>
 	<div
-		class="content prose mt-8 max-w-none text-base leading-8 text-black dark:prose-invert prose-code:rounded-lg prose-code:bg-stone-800 prose-code:p-1 prose-code:text-orange-600 prose-img:rounded-lg prose-img:shadow-xl dark:text-white prose-img:dark:shadow-stone-800"
+		class="md-content"
 	>
 		<slot />
 	</div>
 </Section>
 
 <style is:global>
-	.content pre {
+	.md-content pre {
 		background-color: #cdc8ff0d;
 		border-radius: 0.5rem;
 		font-size: 0.9rem;
 	}
 
-	.content code {
+	.md-content code {
 		overflow-x: auto;
 	}
 
-	.content [data-rehype-pretty-code-figure] code {
+	.md-content [data-rehype-pretty-code-figure] code {
 		padding: 0 !important;
 	}
-	.content pre > code span[data-line] {
+	.md-content pre > code span[data-line] {
 		border-left: 0.5rem solid transparent;
 		padding: 0 0.5rem;
 	}
 
-	.content pre > code span:first-of-type {
+	.md-content pre > code span:first-of-type {
 		border-top-left-radius: 0.5rem;
 		border-top-right-radius: 0.5rem;
 		padding-top: 0.5rem;
 	}
-	.content pre > code span:last-of-type {
+	.md-content pre > code span:last-of-type {
 		border-bottom-left-radius: 0.5rem;
 		border-bottom-right-radius: 0.5rem;
 		padding-bottom: 0.5rem;
 	}
 
-	.content pre > code .highlighted {
+	.md-content pre > code .highlighted {
 		border-left: 0.5rem solid rgba(209, 213, 219, 0.6) !important;
 		background-color: rgba(229, 231, 235, 0.05);
 	}
@@ -48,10 +48,10 @@ import Section from './Section.astro';
      *  data-line-numbers will be enabled on markdown  
      *  with `showLineNumbers` meta string on it
      */
-	.content pre > code[data-line-numbers] {
+	.md-content pre > code[data-line-numbers] {
 		counter-reset: line;
 	}
-	.content pre > code[data-line-numbers] > span[data-line]::before {
+	.md-content pre > code[data-line-numbers] > span[data-line]::before {
 		counter-increment: line;
 		content: counter(line);
 		display: inline-block;
@@ -60,7 +60,7 @@ import Section from './Section.astro';
 		text-align: left;
 		color: #7ca2dfad;
 	}
-	.content pre > code > span[data-line]::before {
+	.md-content pre > code > span[data-line]::before {
 		content: '';
 		display: inline-block;
 		width: 1rem;
@@ -71,11 +71,43 @@ import Section from './Section.astro';
      *  we'll need to adjust the space required 
      *  the number depending on the number of digits 
      */
-	.content pre > code[data-line-numbers-max-digits='2'] > span[data-line]::before {
+	.md-content pre > code[data-line-numbers-max-digits='2'] > span[data-line]::before {
 		width: 2rem;
 	}
 
-	.content code[data-line-numbers-max-digits='3'] > span[data-line]::before {
+	.md-content code[data-line-numbers-max-digits='3'] > span[data-line]::before {
 		width: 3rem;
 	}
 </style>
+
+<script>
+	/**
+	 * @params {HTMLCollectionOf<HTMLElement>} graphs
+	 */
+	async function renderDiagrams(graphs: any) {
+	  const {default: mermaid} = await import("mermaid")
+	  mermaid.initialize({
+		startOnLoad: false,
+		fontFamily: "var(--sans-font)",
+		// @ts-ignore This works, but TS expects a enum for some reason
+		theme: window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "default",
+	  })
+
+	  for (const graph of graphs) {
+		const content = graph.getAttribute("data-content")
+		if (!content) continue
+		let svg = document.createElement("svg")
+		const id = (svg.id = "mermaid-" + Math.round(Math.random() * 100000))
+		graph.appendChild(svg)
+		mermaid.render(id, content).then(result => {
+		  graph.innerHTML = result.svg
+		})
+	  }
+	}
+
+	const graphs = document.getElementsByClassName("mermaid")
+
+	if (document.getElementsByClassName("mermaid").length > 0) {
+	  renderDiagrams(graphs);
+	}
+  </script>
