@@ -2,21 +2,18 @@
 import { AppConfig } from '@/utils/AppConfig';
 import Base from '@/layouts/Base.astro';
 import Hero from '@/components/Hero.astro';
-import LatestPosts from '@/components/LatestPosts.astro';
-import { sortPostsByDate } from '@/utils/data.util';
+import { LatestProjects } from '@/components/LatestProjects';
 import { MarkdownInstance } from 'astro';
 
 const { title } = AppConfig;
 const { description } = AppConfig;
-
 const allPosts = Object.values(
 	import.meta.glob('./posts/*.md', { eager: true })
 ) as MarkdownInstance<any>[];
-allPosts.sort(sortPostsByDate);
-const latestPosts = allPosts.slice(0, 3);
+const allProjects = allPosts.filter(post => !["template", "draft"].includes(post.frontmatter.type));
 ---
 
 <Base head={{ title, description }}>
 	<Hero />
-	<LatestPosts posts={latestPosts} />
+	<LatestProjects client:load allPosts={allProjects} />
 </Base>
