@@ -10,12 +10,12 @@ image:
 tags: ["game", "multiplayer", "websocket", "react", "aws", "lambda", "real world"]
 type: "project"
 ---
-
-![Capa do Projeto](https://placehold.co/736x200)
-
-**Status do Projeto:** ![Badge](https://img.shields.io/badge/Status-Em%20Desenvolvimento-green)  
-**Tipo de Projeto:** Jogo Multiplayer Web  
-**Área Principal:** Frontend e Backend
+**Status do Projeto:** ![Badge](https://img.shields.io/badge/Status-Em%20Desenvolvimento-yellow) \
+**Tipo de Projeto:** Jogo Multiplayer Web \
+**Área Principal:** Frontend e Backend \
+**Repositório GitHub (frontend)**: [word-chain-client](https://github.com/joismar/word-chain-client) \
+**Repositório GitHub (backend)**: [word-chain-backend](https://github.com/joismar/word-chain-backend) \
+🎮 **Demonstração**: https://word-chain-client.vercel.app/
 
 ## 📋 Visão Geral
 O WordChain é um jogo multiplayer em tempo real no qual os jogadores formam cadeias de palavras de maneira competitiva. A cada rodada, os participantes devem inserir uma nova palavra onde o final da ultima palavra deve se encaixar no começo da palavra atual inserida. 
@@ -46,19 +46,6 @@ O WordChain é um jogo multiplayer em tempo real no qual os jogadores formam cad
 - 🔄 **Reconexão Automática** para jogadores que perdem a conexão.
 - 🔐 **Autenticação JWT (planejado)**.
 
-## 🎮 Demonstração
-```bash
-# Para rodar o frontend
-npm install
-npm run dev
-
-# Para rodar o backend
-python lambda/main.py
-```
-
-### Capturas de Tela
-Em breve...
-
 ## 🧩 Arquitetura
 ```mermaid
 graph TD
@@ -87,10 +74,10 @@ wordchain/
 ```
 
 ## 🚀 Desafios e Soluções
-- **Desafio Técnico:** Implementação de WebSockets com escalabilidade e com baixo custo.
-  - **Solução:** Uso do API Gateway da AWS para gerenciar conexões juntamente com AWS Lambda.
-- **Decisão de Design:** Escolha do DynamoDB para armazenar sessões e jogadores.
-  - **Justificativa:** Baixa latência e integração direta com AWS Lambda.
+| Desafio Técnico | Solução |
+|-----------------|---------|
+| Implementação de WebSockets com escalabilidade e com baixo custo | Uso do API Gateway da AWS para gerenciar conexões juntamente com AWS Lambda |
+| Lidar com dados em tempo real com baixo custo, baixa latencia e alto desempenho | DynamoDB para armazenar sessões e jogadores |
 
 ## 📈 Próximos Passos
 - [x] Implementação inicial do backend 🎯
@@ -98,8 +85,3 @@ wordchain/
 - [ ] Adicionar efeitos sonoros 🔊
 - [ ] Melhorar UI/UX para mobile 📱
 - [ ] Adicionar sistema de pontuação mais robusto 🏆
-
-
-## 🔗 Links Úteis
-- [Repositório GitHub (frontend)](https://github.com/joismar/word-chain-client)
-- [Documentação Técnica (backend)](https://github.com/joismar/word-chain-backend)

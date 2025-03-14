@@ -8,7 +8,7 @@ image:
   src:
   alt:
 tags: ["game", "prototype", "learn", "p5.js", "react", "javascript", "websockets"]
-type: "project"
+type: "draft"
 ---
 ![Capa do Projeto](https://placehold.co/736x200)
 

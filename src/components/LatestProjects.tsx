@@ -3,6 +3,7 @@ import Card from './Card';
 import { MarkdownInstance } from 'astro';
 import { useEffect, useState } from 'react';
 import { sortPostsByDate } from '@/utils/data.util';
+import { MAX_POSTS_TO_SHOW } from '@/utils/constants';
 
 type Props = {
 	allPosts: MarkdownInstance<any>[];
@@ -12,14 +13,13 @@ export const LatestProjects: React.FC<Props> = ({ allPosts }) => {
 	const [posts, setPosts] = useState<MarkdownInstance<any>[] | []>([]);
 
 	useEffect(() => {
-		const latestPosts = allPosts.slice(0, 3).sort(sortPostsByDate);
-
+		const latestPosts = allPosts.slice(0, MAX_POSTS_TO_SHOW).sort(sortPostsByDate);
 		setPosts(latestPosts);
 	}, [allPosts]);
 	
 	const loadMore = (e: any) => {
 		e.preventDefault();
-		const nextPosts = allPosts.slice(posts.length, posts.length + 3).sort(sortPostsByDate);
+		const nextPosts = allPosts.slice(posts.length, posts.length + MAX_POSTS_TO_SHOW).sort(sortPostsByDate);
 		setPosts([...posts, ...nextPosts]);
 	}
 

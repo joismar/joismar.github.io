@@ -10,9 +10,8 @@ image:
 tags: ["web", "frontend", "react", "react-router", "typescript", "real world", "hook"]
 type: "snippet"
 ---
-![Capa do Projeto](https://placehold.co/736x200)
 
-**Status do Projeto:** ![Badge](https://img.shields.io/badge/Status-Em%20Desenvolvimento-green)  
+**Status do Projeto:** ![Badge](https://img.shields.io/badge/Status-Concluído-blue)  
 **Tipo de Projeto:** Biblioteca de Hooks \
 **Área Principal:** Frontend
 
@@ -215,9 +214,12 @@ export function App() {
 ```
 
 ## 🚀 Desafios e Soluções
-- **Desafio Técnico:** Conversão de tipos de dados de forma automática.
+| Desafio Técnico | Solução |
+|-----------------|---------|
+| Conversão de tipos de dados de forma automática | Implementação de funções de formatação e parsing para cada tipo de dado suportado. |
+| Manutenção da compatibilidade com diferentes tipos de parâmetros | Uso de `typeof` para identificar o tipo de dado e tratá-lo adequadamente. |
+| Garantir que parâmetros vazios sejam ignorados | Implementação de lógica condicional para verificar se o valor é vazio ou nulo antes de adicionar aos parâmetros de busca. |
 
-## 🔗 Links Úteis
-- [Demo ao Vivo (em breve...)](https://)
-- [Repositório (em breve...)](https://github.com/seusuario/projeto)
-- [Documentação Técnica (em breve...)](https://)
+## 📈 Próximos Passos
+- Escrever testes unitários para garantir a robustez do hook.
+- Adicionar em um repositório de hooks.
