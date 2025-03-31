@@ -10,7 +10,7 @@ export const Tags: React.FC<Props> = ({ tags, withHref }) => {
 	return (
 		<div className="flex flex-wrap">
 			{tags.map((tag: string) => {
-				const element = <Tag tag={tag} withHref={withHref} />;
+				const element = <Tag tag={tag} withHref={withHref} key={tag} />;
 				return withHref ? <a href={`/tags/${tag}`}>{element}</a> : element;
 			})}
 		</div>
