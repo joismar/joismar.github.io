@@ -1,6 +1,6 @@
 ---
 layout: ../../layouts/post.astro
-title: "Simulação de Comportamento de Tartarugas com p5.js"
+title: "Simulação de Agentes Autônomos com p5.js"
 pubDate: 2024-02-20
 description: "Simulação interativa de agentes autônomos com sistema de colisão e busca por comida."
 author: "joismar"

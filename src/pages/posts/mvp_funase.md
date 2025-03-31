@@ -2,7 +2,7 @@
 layout: ../../layouts/post.astro
 title: "MVP para Gestão de Dados Funase"
 pubDate: 2024-11-01
-description: "Trabalho técnico e acadêmico de estudo e desenvolvimento de um MVP para gestão de dados de praticas restaurativas da Funase."
+description: "Trabalho acadêmico de análise e desenvolvimento de um MVP para gestão de dados de praticas restaurativas da Funase."
 author: "joismar"
 image:
   src:

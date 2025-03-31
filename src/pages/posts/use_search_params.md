@@ -7,7 +7,7 @@ author: "joismar"
 image:
   src:
   alt:
-tags: ["web", "frontend", "react", "react-router", "typescript", "real world", "hook"]
+tags: ["web", "frontend", "react", "react-router", "typescript", "real world", "hook", "snippet"]
 type: "snippet"
 ---
 

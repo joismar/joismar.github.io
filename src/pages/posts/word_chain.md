@@ -7,7 +7,7 @@ author: "joismar"
 image:
   src:
   alt:
-tags: ["game", "multiplayer", "websocket", "react", "aws", "lambda", "real world"]
+tags: ["game", "multiplayer", "websocket", "react", "aws", "lambda", "real world", "frontend"]
 type: "project"
 ---
 **Status do Projeto:** ![Badge](https://img.shields.io/badge/Status-Em%20Desenvolvimento-yellow) \
