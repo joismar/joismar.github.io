@@ -11,7 +11,6 @@ interface Props {
 	pubDate: string;
 	img: {
 		src: string;
-		alt: string;
 	};
 }
 
@@ -24,12 +23,12 @@ const formattedDate = formatDate(pubDate);
 	<div class="flex flex-col items-center">
 		<p class="px-14 pb-4 pt-6 text-center text-4xl font-bold">{title}</p>
 		<div class="pb-4">
-			<Tags tags={tags} withHref={true} />
+			<Tags tags={tags} withHref centralized/>
 		</div>
 		<div class="text-sm">
 			<span>{formattedDate}</span> - <span>{minutesRead}</span>
 		</div>
 
-		{img.src ? <img src={img.src} alt={img.alt} /> : null}
+		{img.src ? <img src={img.src} alt="Imagem da postagem" /> : null}
 	</div>
 </Section>

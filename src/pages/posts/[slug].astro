@@ -1,0 +1,45 @@
+---
+import { getAllPosts } from '@/lib/client';
+import { AppConfig } from '@/utils/AppConfig';
+import Base from '@/layouts/Base.astro';
+import PostHeader from '@/components/PostHeader.astro';
+import PostContent from '@/components/PostContent.astro';
+// import 'highlight.js/styles/base16/material-darker.min.css';
+import { getEntry, render } from 'astro:content';
+
+const { description } = AppConfig;
+
+export async function getStaticPaths() {
+  const allPosts = await getAllPosts();
+  return allPosts.map(post => {
+    return {
+      params: { slug: post.slug },
+    }
+  })
+}
+const { slug } = Astro.params;
+const postEntry = await getEntry('posts', slug);
+
+if (!postEntry) {
+  throw new Error('Post not found');
+}
+
+const post = postEntry?.data;
+const { Content } = await render(postEntry);
+---
+
+<Base head={{ title: post.title, description }}>
+    <div class="mx-auto w-full max-w-screen-md">
+        <PostHeader
+            title={post.title}
+            author={post.author.name}
+            tags={post.tags.map(tag => tag.slug)}
+            minutesRead={post.readTimeInMinutes.toString() + ' min'}
+            pubDate={post.publishedAt}
+            img={{ src: post.coverImage?.url || '' }}
+        />
+        <PostContent>
+          <Content />
+        </PostContent>
+    </div>
+</Base>

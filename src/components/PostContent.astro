@@ -89,7 +89,6 @@ import Section from './Section';
 	  mermaid.initialize({
 		startOnLoad: false,
 		fontFamily: "var(--sans-font)",
-		// @ts-ignore This works, but TS expects a enum for some reason
 		theme: window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "default",
 	  })
 
@@ -99,7 +98,7 @@ import Section from './Section';
 		let svg = document.createElement("svg")
 		const id = (svg.id = "mermaid-" + Math.round(Math.random() * 100000))
 		graph.appendChild(svg)
-		mermaid.render(id, content).then(result => {
+		await mermaid.render(id, content).then(result => {
 		  graph.innerHTML = result.svg
 		})
 	  }

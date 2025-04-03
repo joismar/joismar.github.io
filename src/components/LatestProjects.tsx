@@ -1,18 +1,18 @@
 import Section from './Section';
 import Card from './Card';
 import TagFilter from './TagFilter';
-import { MarkdownInstance } from 'astro';
 import { useEffect, useState } from 'react';
 import { sortPostsByDate } from '@/utils/data.util';
 import { MAX_POSTS_TO_SHOW } from '@/utils/constants';
+import { Post } from '@/lib/schema';
 
 type Props = {
-    allPosts: MarkdownInstance<any>[];
+    allPosts: Post[];
 }
 
 export const LatestProjects: React.FC<Props> = ({ allPosts }) => {
-    const [posts, setPosts] = useState<MarkdownInstance<any>[] | []>([]);
-    const [filteredPosts, setFilteredPosts] = useState<MarkdownInstance<any>[] | []>([]);
+    const [posts, setPosts] = useState<Post[] | []>([]);
+    const [filteredPosts, setFilteredPosts] = useState<Post[] | []>([]);
 	const [loading, setLoading] = useState<boolean>(true);
 
     useEffect(() => {
@@ -26,7 +26,7 @@ export const LatestProjects: React.FC<Props> = ({ allPosts }) => {
         if (tag === 'all') {
             setFilteredPosts(posts);
         } else {
-            const filtered = posts.filter(post => post.frontmatter.tags.includes(tag));
+            const filtered = posts.filter(post => post.tags.map(tag => tag.slug).includes(tag));
             setFilteredPosts(filtered);
         }
     };
@@ -42,7 +42,7 @@ export const LatestProjects: React.FC<Props> = ({ allPosts }) => {
         <Section>
             <div className="flex justify-between pb-4">
                 <p className="text-xl font-bold">Ultimos projetos</p>
-				<TagFilter tags={["frontend", "backend", "react", "snippet", "game", "real word"]} onFilterChange={handleFilterChange} />
+				<TagFilter tags={["frontend", "backend", "reactjs", "snippet", "game-development", "real word"]} onFilterChange={handleFilterChange} />
             </div>
             {loading ? (
                 <div className="flex justify-center items-center h-20">

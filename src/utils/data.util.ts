@@ -1,4 +1,4 @@
-import { MarkdownInstance } from 'astro';
+import { Post } from '@/lib/schema';
 
 export const formatDate = (pubDate: string) => {
 	var options: Intl.DateTimeFormatOptions = {
@@ -10,9 +10,9 @@ export const formatDate = (pubDate: string) => {
 	return new Date(pubDate).toLocaleDateString('pt-BR', options);
 };
 
-export const sortPostsByDate = (a: MarkdownInstance<any>, b: MarkdownInstance<any>) => {
-	const pubDateA = new Date(a.frontmatter.pubDate);
-	const pubDateB = new Date(b.frontmatter.pubDate);
+export const sortPostsByDate = (a: Post, b: Post) => {
+	const pubDateA = new Date(a.publishedAt);
+	const pubDateB = new Date(b.publishedAt);
 	if (pubDateA < pubDateB) {
 		return 1;
 	}

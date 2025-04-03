@@ -3,14 +3,13 @@ import { AppConfig } from '@/utils/AppConfig';
 import Base from '@/layouts/Base.astro';
 import Hero from '@/components/Hero.astro';
 import { LatestProjects } from '@/components/LatestProjects';
-import { MarkdownInstance } from 'astro';
+import { getCollection } from 'astro:content';
 
 const { title } = AppConfig;
 const { description } = AppConfig;
-const allPosts = Object.values(
-	import.meta.glob('./posts/*.md', { eager: true })
-) as MarkdownInstance<any>[];
-const allProjects = allPosts.filter(post => !["template", "draft"].includes(post.frontmatter.type));
+
+const posts = await getCollection('posts');
+const allProjects = posts.map(post => post.data);
 ---
 
 <Base head={{ title, description }}>
