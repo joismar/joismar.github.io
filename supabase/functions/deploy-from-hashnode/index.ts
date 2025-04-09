@@ -11,13 +11,9 @@ Deno.serve(async (req) => {
   }
 
   const githubRepo = "joismar/joismar.github.io";
-  const githubEventType = "hashnode-webhook";
+  const githubEventType = "hashnode_webhook";
 
   try {
-      const body = await req.json();
-
-      console.log("Received webhook payload:", body);
-
       const githubResponse = await fetch(
           `https://api.github.com/repos/${githubRepo}/dispatches`,
           {
@@ -47,15 +43,3 @@ Deno.serve(async (req) => {
       return new Response("Internal server error", { status: 500 });
   }
 });
-
-/* To invoke locally:
-
-  1. Run `supabase start` (see: https://supabase.com/docs/reference/cli/supabase-start)
-  2. Make an HTTP request:
-
-  curl -i --location --request POST 'http://127.0.0.1:54321/functions/v1/deploy-from-hashnode' \
-    --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6ImFub24iLCJleHAiOjE5ODM4MTI5OTZ9.CRXP1A7WOeoJeXxjNni43kdQwgnWNReilDMblYTn_I0' \
-    --header 'Content-Type: application/json' \
-    --data '{"name":"Functions"}'
-
-*/
