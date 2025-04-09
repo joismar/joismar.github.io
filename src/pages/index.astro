@@ -9,7 +9,9 @@ const { title } = AppConfig;
 const { description } = AppConfig;
 
 const posts = await getCollection('posts');
-const allProjects = posts.map(post => post.data);
+const allProjects = posts
+	.map(post => post.data)
+	.filter((post) => post.tags.some((tag) => ["project", "snippet"].includes(tag.slug)));
 ---
 
 <Base head={{ title, description }}>

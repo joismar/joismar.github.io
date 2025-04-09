@@ -2,13 +2,13 @@ import { getAllPosts } from '@/lib/client';
 import { createMarkdownProcessor } from '@astrojs/markdown-remark';
 import type { Loader, LoaderContext } from 'astro/loaders';
 
-export function hashnodePostsLoader(onlyProjects?: boolean): Loader {
+export function hashnodePostsLoader(): Loader {
     return {
       name: 'hasnode-posts-loader',
       load: async ({ config, logger, store }: LoaderContext) => {
         logger.info(`Loading posts`);
  
-        const data = await getAllPosts(onlyProjects);
+        const data = await getAllPosts();
 
         for (const post of data) {
           const { content, ...rest } = post;
@@ -24,8 +24,8 @@ export function hashnodePostsLoader(onlyProjects?: boolean): Loader {
 
           async function renderToString(entry: NonNullable<typeof postEntry>) {
             let cleanedMD = entry.body?.replace(/\salign="\w*"(?=\))/g, '');
-            cleanedMD = cleanedMD?.replace(/(\n\s*\n)+/g, '\n');
-            cleanedMD = cleanedMD?.replace(/(\[.*?\]\(.*?\))/g, '$1 \\');
+            // cleanedMD = cleanedMD?.replace(/(\n\s*\n)+/g, '\n');
+            // cleanedMD = cleanedMD?.replace(/(\[.*?\]\(.*?\))/g, '$1 \\');
             cleanedMD = cleanedMD?.replace(/(```)((?!plaintext)\w+)/g, '$1$2 showLineNumbers');
 
             const result = await processor.render(cleanedMD ?? '', {

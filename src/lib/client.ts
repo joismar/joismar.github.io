@@ -7,7 +7,7 @@ export const getClient = () => {
 
 const myHashnodeURL = "joismar.hashnode.dev";
 
-export const getAllPosts = async (onlyProjects?: boolean) => {
+export const getAllPosts = async () => {
     const client = getClient();
 
     const allPosts = await client.request<AllPostsData>(
@@ -51,12 +51,6 @@ export const getAllPosts = async (onlyProjects?: boolean) => {
             }
         `
     );
-
-    if (onlyProjects) {
-        return allPosts.publication.posts.edges.filter((post) =>
-            post.node.tags.some((tag) => ["project", "snippet"].includes(tag.slug))
-        ).map((post) => post.node);
-    }
 
     return allPosts.publication.posts.edges.map((post) => post.node);
 };

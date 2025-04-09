@@ -7,12 +7,6 @@ const posts = defineCollection({
     schema: PostSchema,
 });
 
-const projects = defineCollection({
-    loader: hashnodePostsLoader(true),
-    schema: PostSchema,
-});
-
 export const collections = {
     posts,
-    projects,
 };
